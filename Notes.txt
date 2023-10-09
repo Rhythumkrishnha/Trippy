@@ -1,0 +1,218 @@
+Shortcuts
+1. rfc -> to create functional component
+2. rafce -> to create es6 arrow function
+
+Material-UI
+npm install @material-ui/core @material-ui/icons
+
+ReactJS
+1. ReactJS is an open source JavaScript library used to build user interfaces.
+2. It handles the view layer of our application.
+3. React allows us to create large web applications that can change data without reloading the webpage.
+
+Props are objects that hold information to control the behaviour of a component.
+
+Problems with props is that they are immutable.
+
+State is also an object that hold some information but that information may change over the lifetime of that component.
+
+Props
+-> Props in react are input to a component in React.
+1. Passed to the component.
+2. Props are immutable.
+3. Props can be accessed as props, this.props.
+4. Thay are like parameters passed to a function.
+
+State
+1. Contained inside component.
+2. State can be changed.
+3. Function: useState Hook
+    Class: this.state
+4. They are like variables declared in the function body.   
+
+Syntax: 
+class Car extends React.Component {
+	constructor(props){
+    		super(props);
+    		this.state = {
+        		color: "red",
+    		}
+	}
+	changeColor = () => {
+		this.setSate({color: "blue"})
+	}
+	render (){
+		return <div></div>
+	}	
+}
+
+
+Destructuring props is ES6 specific.
+Syntax: 
+    const {propsvalue} = props;
+
+Event Handling in functional component:
+Syntax:
+    const handleClick = () => {
+        console.log("Button is clicked");
+    }
+
+    <button onClick={handleClick}>Click here</button>
+
+Event binding
+1. Inside constructor
+Syntax:
+    this.increment = this.increment.bind(this);
+
+2. Using arrow function *recommended way
+Arrow function have access to this keyword.
+increment = () => {
+    this.setState({
+        counter: this.state.counter+1;
+    });
+}
+
+3. Inside onClick props
+<button onClick={() => this.increment()}>Click</button>
+
+Element Variable
+-> Element variable is an approach, where you create to store a jsx element and render that particular element depending on condition.
+
+Ternary Condtional
+-> Same as in java.
+
+Map: javascript specific
+-> Returns a new manipulated list.
+
+Rendering Array
+Two ways of adding key:
+1. Rendering list of objects.
+2. Passing index to map function.
+
+Styling in react will be in form of Object.
+1. Inline Styling
+2. Stylessheet .css
+3. CSS Module
+
+Fragments in React
+-> We use fragments in react to nest child elements without using enclosed parent tag.
+import React from 'react';
+<React.Fragment>
+    <h1>Heading</h1>
+    <h2>Subheading</h2>
+</React.Fragment>
+
+Shorthand for React Fragment
+<> </>
+
+Memos
+-> Prevent re-rendering of components.
+Syntax: 
+export default React.memo(Child);
+
+How to use Router?
+1. BrowserRouter in index.js file
+import { BrowserRouter } from "react-router-dom";
+<BrowserRouter>
+    </App>
+</ BrowserRouter>
+2. Use <Link> instead of <a> 
+<Link className={item.className} to={item.url}>
+</ Link>
+3. Routes and Route
+import {Routes, Route } from "react-router-dom";
+<Routes>
+    <Route path="/" element={<Home />}>
+</ Routes>
+
+Synthetic Events
+-> event.preventDefault() is a Synthetic function which works same on all browsers.
+
+Higher Order Component
+-> Advanced method of reusing the component functionality logic.
+-> HOC is a function that accepts a component dynamically and returns a function with added props to it.
+import HOC from './HOC`';
+export default HOC(ComponentName);
+
+Usecases of useRef(): 
+1. To store and persist value between the render.
+const persistref = useRef(null);
+useEffect(() =>{
+	persistref.current += 1;
+})
+
+2. You can get direct access to any DOM node.
+handleclick = (event) =>{
+	changeColorRef.current.style.color = "blue";
+}
+<h1 ref="changeColorRef">Hello</h1>
+
+Implement a custom hooks
+const useWindowScrollPosition = () =>{
+	const [scroll, setScroll] = useState({
+		scrollX: 0,
+		scrollY: 0,
+	});
+	
+	useEffect( () =>{
+		window.addEventListener("scroll", updateScrollPosition);
+	}, []);
+	
+	const updateScrollPosition = () => {
+		setScroll({
+			scrollX: window.scrollX;
+			scrollY: window.scrollY;
+		});
+	}
+
+	return scroll;
+}
+
+Back-End Connectivity
+1. npm init
+2. npm install express mongoose nodemon dotenv cors
+3. server.js 
+4. package.json 
+	"script": {
+		"start": "nodemon server.js"
+	}
+5. To check nodemon is active
+	npm run start
+
+DOM
+Real/Browser DOM
+1. Represents the UI of website in tree data structure.
+2. Show the basic representation of HTML elements.
+3. Whenever there is change in state of application UI, the DOM gets updated and represents the change.
+4. With every change, the DOM gets manipulated and re-rendered to update the application UI, which affects the performance and makes it slower. 
+Virtual DOM 
+1. To make the performance of real DOM quicker and better, the idea of Virtual DOM shows up.
+2. When new item is added, a node is also added to tree also.
+3. When the state of these components changes, another virtual DOM tree is created.
+4. Whenever a change is made in the state of any component, React updates the virtual DOM tree but does not change the real DOM tree.
+5. After updating, react compares the recent version of the virtual DOM with the earlier version.
+6. React knows which objects are altered in the virtual DOM, based on that it only changes those objects in the Real DOM, making minimum working operations.
+7. This process is noted as "diffing".
+
+Prop Drilling
+=> Pass props from source component, and keep passing to the next component in the hierarchy till we reach the deeply nested component.
+
+Node JS is single threaded.
+=> When it gets request, it creates and uses thread to perform that operation and push it into the event loop to take up the next request.
+
+Mongoose
+=> Mongoose is ODM that allows developers to create models/objects with strongly-typed schema.
+
+Responive.jsx
+import { css } from 'styled-components';
+
+export const mobile = (props) => {
+	return css`
+		@media only screen and (max-width: 440px){
+			${(props)}
+		}
+	`
+}
+
+
+
